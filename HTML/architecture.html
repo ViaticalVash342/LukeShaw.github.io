@@ -1,23 +1,70 @@
-<div class="grid-container">
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>HTTP: The Protocol That Powers the Web</title>
   
-  <header class="site-header">
-    <h1>HTTP: The Protocol That Powers the Web</h1>
-  </header>
+ 
+  <link rel="stylesheet" href="./CSS/Style.css">
+  
+</head>
+<body>
 
-  <nav class="main-menu">
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="history.html">History</a></li>
-      <li><a href="architecture.html">Architecture</a></li>
-      <li><a href="concepts.html">Key Concepts</a></li>
-      <li><a href="references.html">References</a></li>
-      <li><a href="about.html">About</a></li>
-    </ul>
-  </nav>
+ 
+  <div class="grid-container">
+    
+    <header class="site-header">
+      <h1>HTTP: The Protocol That Powers the Web</h1>
+    </header>
+
+    <nav class="main-menu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="history.html">History</a></li>
+        <li><a href="architecture.html">Architecture</a></li>
+        <li><a href="concepts.html">Key Concepts</a></li>
+        <li><a href="references.html">References</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
 
   <main class="content">
-    <h2>Welcome</h2>
-    <p>HTTP is a stateless protocol for distributed hypertext systems...</p>
+    <table class="status-table">
+  <thead>
+    <tr>
+      <th>Code Block</th>
+      <th>Classification</th>
+      <th>Technical Operational Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1xx</td>
+      <td>Informational</td>
+      <td>Request received and recognized; the processing protocol is ongoing.</td>
+    </tr>
+    <tr>
+      <td>2xx</td>
+      <td>Success</td>
+      <td>The action was successfully received, understood, and accepted by the server (200 OK).</td>
+    </tr>
+    <tr>
+      <td>3xx</td>
+      <td>Redirection</td>
+      <td>Further action must be taken by the client to fulfill the request. The resource has moved.</td>
+    </tr>
+    <tr>
+      <td>4xx</td>
+      <td>Client Error</td>
+      <td>The request contains bad syntax or cannot be fulfilled. The client is at fault.</td>
+    </tr>
+    <tr>
+      <td>5xx</td>
+      <td>Server Error</td>
+      <td>The server failed to fulfill a valid request due to an internal error.</td>
+    </tr>
+  </tbody>
+</table>
   </main>
 
   <footer id="footer-note">

@@ -29,8 +29,34 @@
     </nav>
 
     <main class="content">
-      <h2>Welcome</h2>
-      <p>HTTP is a stateless protocol for distributed hypertext systems. It is used across the internet to enable the transmission of hypermedia documents such as HTML, CSS, JavaScript, images, and video.</p>
+  
+<h2>Key HTTP Concepts</h2>
+<p>Understanding the web requires familiarity with these core technical concepts:</p>
+
+
+<ul>
+  <li>
+    <strong>Stateless Protocol:</strong> Base HTTP is stateless, meaning the server does not retain any memory or data about the client between consecutive requests[cite: 6]. Every transaction is treated as a new event[cite: 6].
+  </li>
+  <li>
+    <strong>Cookies:</strong> Because HTTP is stateless, cookies are used to restore a user's specific context[cite: 6]. A cookie is a small file saved by the web server to remember session details, creating the illusion of a continuous connection[cite: 6].
+  </li>
+  <li>
+    <strong>Caching:</strong> An architecture built into header semantics that allows browsers to save files locally and reuse them, preventing the need to download identical assets repeatedly[cite: 6].
+  </li>
+  <li>
+    <strong>Head-of-Line Blocking:</strong> A processing issue where if the first asset in a queue experiences trouble loading or delays, all subsequent assets are blocked from processing[cite: 6]. 
+  </li>
+  <li>
+    <strong>Multiplexing:</strong> A solution introduced in HTTP/2 that chops requests and responses into tiny binary frames, interleaves them, and sends them down a single TCP connection, effectively turning multiple slow lanes into a single high-speed highway[cite: 6].
+  </li>
+  <li>
+    <strong>QUIC:</strong> A protocol created by Google using User Datagram Protocol (UDP) that replaces TCP in HTTP/3[cite: 6]. It manages streams independently to eliminate transport-level blocking[cite: 6].
+  </li>
+  <li>
+    <strong>Transport Layer Security (TLS):</strong> A cryptographic wrapper used by HTTPS to protect standard HTTP traffic, ensuring data confidentiality and integrity during transit[cite: 6].
+  </li>
+</ul>
     </main>
 
     <footer id="footer-note">

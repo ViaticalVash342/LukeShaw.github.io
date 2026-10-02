@@ -104,3 +104,28 @@ a:hover {
 }
 
 
+.next-page-arrow {
+  display: flex;
+  justify-content: flex-end; 
+  margin-top: 50px;
+  padding-top: 20px;
+  border-top: 1px solid #ccc;
+}
+
+
+.next-page-arrow a {
+  background-color: #003366;
+  color: white;
+  font-size: 1.5rem;
+  padding: 15px 20px;
+  border-radius: 50%;
+  text-decoration: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.next-page-arrow a:hover {
+  background-color: #ff9900;
+  color: white;
+  text-decoration: none;
+}

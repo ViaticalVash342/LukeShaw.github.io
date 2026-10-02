@@ -1,9 +1,8 @@
 .main-section {
-    background-image: url('/workspaces/LukeShaw.github.io/Images/httpimage.jpg');
+    background-image: url('../Images/httpimage.jpg');
 
     background-size: cover;
-
-    background-postion: center;
+    background-position: center;
 
     min-height: 400px;
 

@@ -93,4 +93,11 @@ a:hover {
   color: #003366;
 }
 
-
+.content-image {
+  max-width: 100%;
+  height: auto;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

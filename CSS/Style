@@ -1,0 +1,25 @@
+.main-section {
+    background-image: url('/workspaces/LukeShaw.github.io/Images/httpimage.jpg');
+
+    background-size: cover;
+
+    background-postion: center;
+
+    min-height: 400px;
+
+    padding: 50px;
+}
+
+.main-section h1 {
+    color: white;
+    font-size: 4rem;
+    margin-bottom: 10px;
+    font-family: Arial, sans-serif;
+}
+
+.main-section p {
+    color:white;
+    font-size: 1.5rem;
+    font-family: Arial, sans-serif;     
+}
+

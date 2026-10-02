@@ -20,6 +20,16 @@ body {
   color: white;
   padding: 20px;
   text-align: center;
+  position: relative;
+}
+
+.header-logo {
+  height: 100px;
+  width: auto;
+  position: absolute;
+  left: 30px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .main-menu {
@@ -93,11 +103,4 @@ a:hover {
   color: #003366;
 }
 
-.content-image {
-  max-width: 100%;
-  height: auto;
-  margin-top: 15px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
+

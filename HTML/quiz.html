@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTTP: The Protocol That Powers the Web - Self-Assessment Quiz</title>
+  
+  <!-- CSS Link -->
+  <link rel="stylesheet" href="../CSS/Style.css">
+</head>
+<body>
+
+  <!-- Grid Container -->
+  <div class="grid-container">
+    
+    <!-- Header -->
+    <header class="site-header">
+      <img src="../Images/spiningglobe.gif" alt="Spinning Globe" class="header-logo">
+      <h1>HTTP: The Protocol That Powers the Web</h1>
+    </header>
+
+    <!-- Nav -->
+    <nav class="main-menu">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="history.html">History</a></li>
+        <li><a href="architecture.html">Architecture</a></li>
+        <li><a href="concepts.html">Key Concepts</a></li>
+        <li><a href="references.html">References</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+
+    <!-- Main -->
+    <main class="content">
+      <div class="quiz-header-bar">
+        <h2>HTTP Self-Assessment Quiz</h2>
+        <!-- 10-Minute Countdown Timer -->
+        <div id="timer-box" class="timer-badge">
+          Time Remaining: <span id="time-display">10:00</span>
+        </div>
+      </div>
+
+      <p>Test your knowledge of HTTP history, architecture, status codes, and modern protocols. You have 10 minutes to complete all 10 questions.</p>
+
+      <!-- Results Container (Revealed upon submission) -->
+      <section id="results-container" class="results-panel hidden" aria-live="polite">
+        <h3>Quiz Results</h3>
+        <div class="results-summary">
+          <span id="pass-fail-badge" class="status-badge"></span>
+          <p><strong>Total Score:</strong> <span id="total-score"></span></p>
+          <p><strong>Time Spent:</strong> <span id="time-spent"></span></p>
+        </div>
+        <div id="question-breakdown"></div>
+      </section>
+
+      <!-- Quiz Form -->
+      <form id="http-quiz-form">
+
+        <!-- Q1: Fill-in-the-blank -->
+        <fieldset class="question-card">
+          <legend>1. Fill in the blank: The foundation for HTTP was laid down in 1989 by British scientist ________________ while working at CERN.</legend>
+          <label for="q1">Your Answer:</label>
+          <input type="text" id="q1" name="q1" placeholder="Enter full name..." autocomplete="off">
+        </fieldset>
+
+        <!-- Q2: Fill-in-the-blank -->
+        <fieldset class="question-card">
+          <legend>2. Fill in the blank: Because base HTTP is stateless, small files called ________________ are saved by the web server to remember user session details.</legend>
+          <label for="q2">Your Answer:</label>
+          <input type="text" id="q2" name="q2" placeholder="Enter term..." autocomplete="off">
+        </fieldset>
+
+        <!-- Q3: Single-choice Multiple Choice -->
+        <fieldset class="question-card">
+          <legend>3. Which HTTP status code block indicates a Client Error (such as bad syntax or an unfulfillable request)?</legend>
+          <label class="option-row"><input type="radio" name="q3" value="1xx"> 1xx (Informational)</label>
+          <label class="option-row"><input type="radio" name="q3" value="2xx"> 2xx (Success)</label>
+          <label class="option-row"><input type="radio" name="q3" value="4xx"> 4xx (Client Error)</label>
+          <label class="option-row"><input type="radio" name="q3" value="5xx"> 5xx (Server Error)</label>
+        </fieldset>
+
+        <!-- Q4: Single-choice Multiple Choice -->
+        <fieldset class="question-card">
+          <legend>4. What problem occurs when the first asset in a queue experiences trouble loading and blocks all subsequent assets from processing?</legend>
+          <label class="option-row"><input type="radio" name="q4" value="caching"> Local Asset Caching</label>
+          <label class="option-row"><input type="radio" name="q4" value="hol"> Head-of-Line Blocking</label>
+          <label class="option-row"><input type="radio" name="q4" value="stateless"> Stateless Transaction Reset</label>
+          <label class="option-row"><input type="radio" name="q4" value="redirection"> 3xx Redirection Loop</label>
+        </fieldset>
+
+        <!-- Q5: Single-choice Multiple Choice -->
+        <fieldset class="question-card">
+          <legend>5. Which underlying transport protocol, created by Google using UDP, replaces TCP in HTTP/3?</legend>
+          <label class="option-row"><input type="radio" name="q5" value="tls"> TLS</label>
+          <label class="option-row"><input type="radio" name="q5" value="quic"> QUIC</label>
+          <label class="option-row"><input type="radio" name="q5" value="ftp"> FTP</label>
+          <label class="option-row"><input type="radio" name="q5" value="rfc"> RFC 1945</label>
+        </fieldset>
+
+        <!-- Q6: Single-choice Multiple Choice -->
+        <fieldset class="question-card">
+          <legend>6. Which version of HTTP first introduced Content-Type headers, allowing the web to support multimedia file types beyond plain text?</legend>
+          <label class="option-row"><input type="radio" name="q6" value="0.9"> HTTP/0.9 (1991)</label>
+          <label class="option-row"><input type="radio" name="q6" value="1.0"> HTTP/1.0 (1996)</label>
+          <label class="option-row"><input type="radio" name="q6" value="2"> HTTP/2 (2015)</label>
+          <label class="option-row"><input type="radio" name="q6" value="3"> HTTP/3 (2022)</label>
+        </fieldset>
+
+        <!-- Q7: Single-choice Multiple Choice -->
+        <fieldset class="question-card">
+          <legend>7. How does HTTP/2 multiplexing improve performance over a single TCP connection?</legend>
+          <label class="option-row"><input type="radio" name="q7" value="frames"> It chops requests and responses into tiny binary frames and interleaves them.</label>
+          <label class="option-row"><input type="radio" name="q7" value="udp"> It switches from TCP to UDP packets.</label>
+          <label class="option-row"><input type="radio" name="q7" value="text"> It restricts transfers to static plain-text documents.</label>
+          <label class="option-row"><input type="radio" name="q7" value="cookies"> It eliminates the need for browser caching and cookies.</label>
+        </fieldset>
+
+        <!-- Q8: Multi-selection (Checkboxes) -->
+        <fieldset class="question-card">
+          <legend>8. Which of the following were the three core technologies created by Tim Berners-Lee in 1989? (Select all that apply)</legend>
+          <label class="option-row"><input type="checkbox" name="q8" value="html"> HTML (for document structure)</label>
+          <label class="option-row"><input type="checkbox" name="q8" value="urls"> URLs (for identifying resources)</label>
+          <label class="option-row"><input type="checkbox" name="q8" value="http"> HTTP (for requesting and transferring media)</label>
+          <label class="option-row"><input type="checkbox" name="q8" value="quic"> QUIC (for UDP transport)</label>
+        </fieldset>
+
+        <!-- Q9: Multi-selection (Checkboxes) -->
+        <fieldset class="question-card">
+          <legend>9. Which statements accurately describe the Client-Server communication model in HTTP? (Select all that apply)</legend>
+          <label class="option-row"><input type="checkbox" name="q9" value="client"> The client is typically a web browser that submits requests on behalf of a user.</label>
+          <label class="option-row"><input type="checkbox" name="q9" value="server"> The server listens for requests, processes them, and returns a response.</label>
+          <label class="option-row"><input type="checkbox" name="q9" value="memory"> The server automatically retains full session memory between every HTTP request without cookies.</label>
+          <label class="option-row"><input type="checkbox" name="q9" value="status"> Every HTTP response includes a numeric status code.</label>
+        </fieldset>
+
+        <!-- Q10: Dropdown Selection -->
+        <fieldset class="question-card">
+          <legend>10. Select the cryptographic wrapper used by HTTPS to ensure data confidentiality and integrity during transit:</legend>
+          <label for="q10">Select Protocol:</label>
+          <select id="q10" name="q10">
+            <option value="">-- Choose an option --</option>
+            <option value="udp">User Datagram Protocol (UDP)</option>
+            <option value="tls">Transport Layer Security (TLS)</option>
+            <option value="ietf">Internet Engineering Task Force (IETF)</option>
+            <option value="html">Hypertext Markup Language (HTML)</option>
+          </select>
+        </fieldset>
+
+        <!-- Submit & Reset Controls -->
+        <div class="quiz-controls">
+          <button type="submit" id="submit-btn" class="quiz-btn primary-btn">Submit Quiz</button>
+          <button type="button" id="reset-btn" class="quiz-btn secondary-btn">Retake / Reset Quiz</button>
+        </div>
+
+      </form>
+
+      <!-- Next Page Button -->
+      <div class="next-page-arrow">
+        <a href="about.html" title="Next Page">&#10140;</a>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer-note">
+      <p>IT 3203 Class Project. Visit the <a href="https://ksuweb.github.io/IT3203/">class website</a>.</p>
+    </footer>
+
+  </div>
+
+  <!-- External Quiz JavaScript -->
+  <script src="../JS/quiz.js"></script>
+</body>
+</html>

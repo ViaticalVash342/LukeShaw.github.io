@@ -132,7 +132,22 @@ function startTimer() {
 // ==========================================
 // 4. GRADING & RESULTS RENDERING
 // ==========================================
-// Evaluate each question against the answer key
+function gradeQuiz(event) {
+  if (event) event.preventDefault();
+  if (quizSubmitted) return; // Prevent duplicate grading
+
+  quizSubmitted = true;
+  clearInterval(timerInterval);
+  submitBtn.disabled = true;
+
+  // Calculate and display elapsed time
+  const elapsedSeconds = QUIZ_DURATION_SECONDS - timeRemaining;
+  timeSpentSpan.textContent = formatTime(elapsedSeconds);
+
+  let score = 0;
+  questionBreakdown.innerHTML = "";
+
+  // Evaluate each question against the answer key
   answerKey.forEach((item, index) => {
     let isCorrect = false;
     let userResponse = "No answer provided";
@@ -183,6 +198,19 @@ function startTimer() {
     questionBreakdown.appendChild(resultCard);
   });
 
+  // Calculate overall percentage and Pass/Fail status
+  const totalQuestions = answerKey.length;
+  const percentage = Math.round((score / totalQuestions) * 100);
+  const passed = percentage >= PASS_THRESHOLD_PERCENT;
+
+  totalScoreSpan.textContent = `${score} / ${totalQuestions} (${percentage}%)`;
+  passFailBadge.textContent = passed ? "OVERALL RESULT: PASS" : "OVERALL RESULT: FAIL";
+  passFailBadge.className = `status-badge ${passed ? "status-pass" : "status-fail"}`;
+
+  // Display results panel and scroll smoothly to the top of the results
+  resultsContainer.classList.remove("hidden");
+  resultsContainer.scrollIntoView({ behavior: "smooth", block: "start" });
+}
 // ==========================================
 // 5. RESET / RETAKE HANDLER
 // ==========================================

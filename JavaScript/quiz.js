@@ -1,17 +1,12 @@
 /**
  * IT 3203 Project Milestone #2: HTTP Self-Assessment Quiz
- * Handles 10-minute countdown timer, elapsed time tracking,
- * answer validation across multiple input types, color-coded results,
- * and full quiz reset functionality.
- */
 
-// ==========================================
-// 1. QUIZ CONFIGURATION & ANSWER KEY
-// ==========================================
+// 1. QUIZ & ANSWER KEY
+
 const QUIZ_DURATION_SECONDS = 600; // 10 minutes (600 seconds)
 const PASS_THRESHOLD_PERCENT = 70; // 70% (7/10) required to pass
 
-// Answer key mapped to the 10 questions in quiz.html
+// Answer key mapped to ques in quiz.html
 const answerKey = [
   {
     id: "q1",
@@ -76,9 +71,9 @@ const answerKey = [
   
 ];
 
-// ==========================================
-// 2. STATE & DOM REFERENCES
-// ==========================================
+
+// 2. STATE
+
 let timeRemaining = QUIZ_DURATION_SECONDS;
 let timerInterval = null;
 let quizSubmitted = false;
@@ -94,18 +89,15 @@ const questionBreakdown = document.getElementById("question-breakdown");
 const submitBtn = document.getElementById("submit-btn");
 const resetBtn = document.getElementById("reset-btn");
 
-// ==========================================
-// 3. TIMER MANAGEMENT
-// ==========================================
-
-// Formats total seconds into MM:SS string
+// 3. TIMER 
+// Formats seconds to MM:SS 
 function formatTime(totalSeconds) {
   const minutes = Math.floor(totalSeconds / 60);
   const seconds = totalSeconds % 60;
   return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
 }
 
-// Starts or restarts the 10-minute countdown
+// Starts/restartscountdown
 function startTimer() {
   clearInterval(timerInterval);
   timeDisplay.textContent = formatTime(timeRemaining);
@@ -115,12 +107,12 @@ function startTimer() {
     timeRemaining--;
     timeDisplay.textContent = formatTime(timeRemaining);
 
-    // Highlight timer in red when under 1 minute remains
+    // Highlight timer red when < 1 min
     if (timeRemaining <= 60) {
       timerBox.classList.add("timer-warning");
     }
 
-    // Automatically grade quiz when timer hits 00:00
+    // Grade quiz when time ends
     if (timeRemaining <= 0) {
       clearInterval(timerInterval);
       alert("Time has expired! Your quiz will now be submitted automatically.");
@@ -129,9 +121,8 @@ function startTimer() {
   }, 1000);
 }
 
-// ==========================================
-// 4. GRADING & RESULTS RENDERING
-// ==========================================
+
+// 4. GRADING
 function gradeQuiz(event) {
   if (event) event.preventDefault();
   if (quizSubmitted) return; // Prevent duplicate grading
@@ -147,7 +138,7 @@ function gradeQuiz(event) {
   let score = 0;
   questionBreakdown.innerHTML = "";
 
-  // Evaluate each question against the answer key
+  // Evaluate questions
   answerKey.forEach((item, index) => {
     let isCorrect = false;
     let userResponse = "No answer provided";
@@ -187,7 +178,7 @@ function gradeQuiz(event) {
       score++;
     }
 
-    // Create color-coded breakdown card for this question
+    // color coded breakdown
     const resultCard = document.createElement("div");
     resultCard.className = `breakdown-item ${isCorrect ? "item-correct" : "item-incorrect"}`;
     resultCard.innerHTML = `
@@ -198,7 +189,7 @@ function gradeQuiz(event) {
     questionBreakdown.appendChild(resultCard);
   });
 
-  // Calculate overall percentage and Pass/Fail status
+  // Calculate percentage and Pass/Fail 
   const totalQuestions = answerKey.length;
   const percentage = Math.round((score / totalQuestions) * 100);
   const passed = percentage >= PASS_THRESHOLD_PERCENT;
@@ -211,9 +202,8 @@ function gradeQuiz(event) {
   resultsContainer.classList.remove("hidden");
   resultsContainer.scrollIntoView({ behavior: "smooth", block: "start" });
 }
-// ==========================================
-// 5. RESET / RETAKE HANDLER
-// ==========================================
+
+// 5. RESET
 function resetQuiz() {
   clearInterval(timerInterval);
   quizForm.reset();
@@ -229,9 +219,9 @@ function resetQuiz() {
   startTimer();
 }
 
-// ==========================================
-// 6. EVENT LISTENERS
-// ==========================================
+
+// 6. EVENT LISTENER
+
 quizForm.addEventListener("submit", gradeQuiz);
 resetBtn.addEventListener("click", resetQuiz);
 

@@ -132,43 +132,40 @@ function startTimer() {
 // ==========================================
 // 4. GRADING & RESULTS RENDERING
 // ==========================================
-function gradeQuiz(event) {
-  if (event) event.preventDefault();
-  if (quizSubmitted) return; // Prevent duplicate grading
-
-  quizSubmitted = true;
-  clearInterval(timerInterval);
-  submitBtn.disabled = true;
-
-  // Calculate and display elapsed time
-  const elapsedSeconds = QUIZ_DURATION_SECONDS - timeRemaining;
-  timeSpentSpan.textContent = formatTime(elapsedSeconds);
-
-  let score = 0;
-  questionBreakdown.innerHTML = "";
-
-  // Evaluate each question against the answer key
+// Evaluate each question against the answer key
   answerKey.forEach((item, index) => {
     let isCorrect = false;
+    let userResponse = "No answer provided";
 
     if (item.type === "text") {
-      const userText = document.getElementById(item.id).value.trim().toLowerCase();
-      isCorrect = item.acceptedAnswers.includes(userText);
+      const rawText = document.getElementById(item.id).value.trim();
+      userResponse = rawText !== "" ? rawText : "No answer provided";
+      isCorrect = item.acceptedAnswers.includes(rawText.toLowerCase());
     } 
     else if (item.type === "radio") {
       const selectedRadio = document.querySelector(`input[name="${item.id}"]:checked`);
-      isCorrect = selectedRadio !== null && selectedRadio.value === item.correct;
+      if (selectedRadio) {
+        userResponse = selectedRadio.parentElement.textContent.trim();
+        isCorrect = selectedRadio.value === item.correct;
+      }
     } 
     else if (item.type === "checkbox") {
-      const selectedBoxes = Array.from(document.querySelectorAll(`input[name="${item.id}"]:checked`))
-                                 .map(checkbox => checkbox.value);
+      const selectedElements = Array.from(document.querySelectorAll(`input[name="${item.id}"]:checked`));
+      const selectedValues = selectedElements.map(checkbox => checkbox.value);
+      
+      if (selectedElements.length > 0) {
+        userResponse = selectedElements.map(checkbox => checkbox.parentElement.textContent.trim()).join("; ");
+      }
       // User must select every correct box and zero incorrect boxes
-      isCorrect = selectedBoxes.length === item.correct.length &&
-                  item.correct.every(val => selectedBoxes.includes(val));
+      isCorrect = selectedValues.length === item.correct.length &&
+                  item.correct.every(val => selectedValues.includes(val));
     } 
     else if (item.type === "select") {
-      const selectedDropdown = document.getElementById(item.id).value;
-      isCorrect = selectedDropdown === item.correct;
+      const selectEl = document.getElementById(item.id);
+      if (selectEl.value !== "") {
+        userResponse = selectEl.options[selectEl.selectedIndex].text;
+      }
+      isCorrect = selectEl.value === item.correct;
     }
 
     if (isCorrect) {
@@ -180,24 +177,11 @@ function gradeQuiz(event) {
     resultCard.className = `breakdown-item ${isCorrect ? "item-correct" : "item-incorrect"}`;
     resultCard.innerHTML = `
       <strong>Question ${index + 1}:</strong> ${isCorrect ? "Correct (1/1 pt)" : "Incorrect (0/1 pt)"}<br>
-      <span>Correct Answer: ${item.displayAnswer}</span>
+      <span><strong>Your Answer:</strong> ${userResponse}</span><br>
+      <span><strong>Correct Answer:</strong> ${item.displayAnswer}</span>
     `;
     questionBreakdown.appendChild(resultCard);
   });
-
-  // Calculate overall percentage and Pass/Fail status
-  const totalQuestions = answerKey.length;
-  const percentage = Math.round((score / totalQuestions) * 100);
-  const passed = percentage >= PASS_THRESHOLD_PERCENT;
-
-  totalScoreSpan.textContent = `${score} / ${totalQuestions} (${percentage}%)`;
-  passFailBadge.textContent = passed ? "OVERALL RESULT: PASS" : "OVERALL RESULT: FAIL";
-  passFailBadge.className = `status-badge ${passed ? "status-pass" : "status-fail"}`;
-
-  // Display results panel and scroll smoothly to the top of the results
-  resultsContainer.classList.remove("hidden");
-  resultsContainer.scrollIntoView({ behavior: "smooth", block: "start" });
-}
 
 // ==========================================
 // 5. RESET / RETAKE HANDLER
